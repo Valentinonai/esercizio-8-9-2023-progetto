@@ -1,9 +1,12 @@
 import { Component } from "react";
-import { Dropdown, Nav, Navbar } from "react-bootstrap";
+import { Button, Dropdown, Form, Nav, Navbar } from "react-bootstrap";
 import DropdownItem from "react-bootstrap/esm/DropdownItem";
 import DropdownMenu from "react-bootstrap/esm/DropdownMenu";
 
 class TopBar extends Component {
+  state = {
+    search: "",
+  };
   render() {
     return (
       <Navbar expand="lg" className="navbar navbar-dark px-3" style={{ backgroundColor: "#221f1f" }}>
@@ -15,7 +18,6 @@ class TopBar extends Component {
             style={{ width: "100px", height: "55px" }}
           />
         </Navbar.Brand>
-
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link href="#home" onClick={(event) => this.props.handlePage(event.target.innerText)}>
@@ -26,11 +28,45 @@ class TopBar extends Component {
             <Nav.Link href="#link">Recently Added</Nav.Link>
             <Nav.Link href="#link">My List</Nav.Link>
           </Nav>
+          <Form
+            className="d-flex align-items-center"
+            onSubmit={(event) => {
+              event.preventDefault();
+              this.props.RicercaUtente(this.state.search);
+            }}
+          >
+            <Form.Control
+              type="text"
+              placeholder="Search"
+              value={this.state.search}
+              onChange={(event) => this.setState({ search: event.target.value })}
+              style={{
+                color: "gray",
+                boxShadow: "none",
+                border: "1px solid grey",
+                backgroundColor: "transparent",
+              }}
+            />
+
+            <Button
+              type="submit"
+              style={{
+                backgroundColor: "transparent",
+                border: "1px solid gray",
+                padding: 0,
+                height: "36px",
+                marginInlineEnd: "10px",
+              }}
+            >
+              <i className="fa fa-search icons"></i>
+            </Button>
+          </Form>
         </Navbar.Collapse>
         <div className="d-flex align-items-center justify-content-between">
-          <i className="fa fa-search icons"></i>
-          <div id="kids">KIDS</div>
-          <i className="fa fa-bell icons"></i>
+          <div id="kids" className=" d-none d-md-block">
+            KIDS
+          </div>
+          <i className="fa fa-bell icons d-none d-md-block"></i>
 
           <Dropdown className="dropdown ml-4 mt-1">
             <Dropdown.Toggle
@@ -62,7 +98,7 @@ class TopBar extends Component {
               </DropdownItem>
             </DropdownMenu>
           </Dropdown>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" style={{ boxShadow: "none" }} />
+          <Navbar.Toggle aria-controls="basic-navbar-nav" style={{ boxShadow: "none" }}></Navbar.Toggle>
         </div>
       </Navbar>
     );

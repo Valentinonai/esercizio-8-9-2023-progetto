@@ -18,6 +18,17 @@ class App extends Component {
       Profile: false,
       Settings: false,
     },
+    sceltaUtente: {
+      titolo: "",
+      check: false,
+    },
+  };
+  //Ricerca della serie di film che voglio
+  RicercaUtente = (search) => {
+    this.setState({ sceltaUtente: { titolo: search, check: false } }, () => {
+      if (search === "") this.setState({ sceltaUtente: { titolo: search, check: false } });
+      else this.setState({ sceltaUtente: { titolo: search, check: true } });
+    });
   };
   //Modifico lo stato per far visualizzare la pagina desiderata
   handlePage = (page) => {
@@ -30,11 +41,17 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <TopBar logo={logo} handlePage={this.handlePage} />
+        <TopBar logo={logo} handlePage={this.handlePage} RicercaUtente={this.RicercaUtente} />
         <Container>
           <Header />
           {this.state.pages.Home && (
             <>
+              {this.state.sceltaUtente.check && (
+                <>
+                  <h4>{this.state.sceltaUtente.titolo}</h4>
+                  <Category saga={this.state.sceltaUtente.titolo} />
+                </>
+              )}
               <h4>{this.state.movies[0]}</h4>
               <Category saga={this.state.movies[0]} />
               <h4>{this.state.movies[1]}</h4>
