@@ -14,9 +14,9 @@ class Category extends Component {
   componentDidMount = async () => {
     try {
       const risp = await fetch(` http://www.omdbapi.com/?apikey=c8870a25&s=${this.props.saga}`);
+      this.setState({ loader: false });
       if (risp.ok) {
         const movies = await risp.json();
-        this.setState({ loader: false });
         if (movies.Search.length > 0) {
           this.setState({
             movies: movies.Search,
@@ -32,6 +32,7 @@ class Category extends Component {
         this.setState({ error: { variant: "danger", code: true, message: `Errore: ${risp.status}` } });
       }
     } catch (error) {
+      this.setState({ loader: false });
       this.setState({ error: { variant: "danger", code: true, message: `Errore: ${error}` } });
     }
   };
@@ -39,7 +40,7 @@ class Category extends Component {
     return (
       <>
         {this.state.loader ? (
-          <Spinner animation="border" role="status">
+          <Spinner animation="border" role="status" variant="light">
             <span className="visually-hidden">Loading...</span>
           </Spinner>
         ) : (
