@@ -69,15 +69,15 @@ class Profile extends Component {
         </Row>
         <div className="py-4 rowButton">
           <button type="button" className="btn btn-light me-3 px-4 my-2">
-            <a href="./index.html">SAVE</a>
+            <a href="#p">SAVE</a>
           </button>
 
-          <button type="button " className="btn btn-dark btnPL me-3 px-4 my-2">
-            <a href="./index.html">CANCEL</a>
+          <button type="button " className="btn btn-dark btnPL me-3 px-4 my-2" style={{ borderColor: "gray" }}>
+            <a href="#p">CANCEL</a>
           </button>
 
-          <button type="button " className="btn btn-dark btnPL me-3 px-4 my-2">
-            <a href="./index.html">DELETE PROFILE</a>
+          <button type="button " className="btn btn-dark btnPL me-3 px-4 my-2" style={{ borderColor: "gray" }}>
+            <a href="#p">DELETE PROFILE</a>
           </button>
         </div>
       </Container>

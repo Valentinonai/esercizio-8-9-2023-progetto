@@ -15,7 +15,7 @@ class TopBar extends Component {
             style={{ width: "100px", height: "55px" }}
           />
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link href="#home" onClick={(event) => this.props.handlePage(event.target.innerText)}>
@@ -26,6 +26,8 @@ class TopBar extends Component {
             <Nav.Link href="#link">Recently Added</Nav.Link>
             <Nav.Link href="#link">My List</Nav.Link>
           </Nav>
+        </Navbar.Collapse>
+        <div className="d-flex align-items-center justify-content-between">
           <i className="fa fa-search icons"></i>
           <div id="kids">KIDS</div>
           <i className="fa fa-bell icons"></i>
@@ -60,7 +62,8 @@ class TopBar extends Component {
               </DropdownItem>
             </DropdownMenu>
           </Dropdown>
-        </Navbar.Collapse>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" style={{ boxShadow: "none" }} />
+        </div>
       </Navbar>
     );
   }
