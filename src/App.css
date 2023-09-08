@@ -272,3 +272,6 @@ input[type="checkbox"] {
     order: 3;
   }
 }
+::placeholder {
+  color: gray !important;
+}
