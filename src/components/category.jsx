@@ -46,7 +46,7 @@ class Category extends Component {
         ) : (
           <>
             {this.state.error.code && <Alert variant={this.state.error.variant}>{this.state.error.message}</Alert>}
-            <Row className="r mb-4 no-gutters text-center">
+            <Row className=" mb-4 no-gutters text-center">
               {this.state.movies &&
                 this.state.movies
                   .filter((elem) => elem.Type === "movie" && elem.Poster !== "N/A")
