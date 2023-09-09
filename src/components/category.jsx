@@ -48,11 +48,14 @@ class Category extends Component {
             {this.state.error.code && <Alert variant={this.state.error.variant}>{this.state.error.message}</Alert>}
             <Row className="r mb-4 no-gutters text-center">
               {this.state.movies &&
-                this.state.movies.slice(0, 6).map((elem, index) => (
-                  <Col className=" mb-2 px-1" key={`${elem.imdbID}-${index}`}>
-                    <img className="img-fluid" src={elem.Poster} alt="movie" />
-                  </Col>
-                ))}
+                this.state.movies
+                  .filter((elem) => elem.Type === "movie" && elem.Poster !== "N/A")
+                  .slice(0, 6)
+                  .map((elem, index) => (
+                    <Col className=" mb-2 px-1" key={`${elem.imdbID}-${index}`}>
+                      <img className="img-fluid" src={elem.Poster} alt="movie" />
+                    </Col>
+                  ))}
             </Row>
           </>
         )}
